@@ -1,23 +1,32 @@
 class Solution {
-    //Using two binary Search for first and last index
-    //https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/discuss/14699/Clean-iterative-solution-with-two-binary-searches-(with-explanation)/275524
+    //Using Binary Search Solution two times given in Solution
     public int[] searchRange(int[] nums, int target) {
         int[] retPos=new int[]{-1,-1};
-        if(nums==null || nums.length==0){
-            return retPos;
-        }
-        retPos[0]=findFirstPost(nums,target);
-        retPos[1]=findLastPost(nums,target);
+        int first=findTargetPosition(nums,target,true);
+        if(first==-1) return retPos;
+        int last=findTargetPosition(nums,target,false);
+        retPos[0]=first;
+        retPos[1]=last;
         return retPos;
     }
-    public int findFirstPost(int[] nums,int target){
-        int left=0;int right=nums.length-1;
-        int start=-1;
+    public int findTargetPosition(int[] nums,int target,boolean first){
+        int left=0;
+        int right=nums.length-1;
         while(left<=right){
             int mid=left+(right-left)/2;
             if(nums[mid]==target){
-                start=mid;
-                right=mid-1;
+                if(first){
+                    if(left==mid || nums[mid-1]!=target){
+                        return mid;
+                    }
+                    right=mid-1;
+                }
+                else{
+                    if(right==mid || nums[mid+1]!=target){
+                        return mid;
+                    }
+                    left=mid+1;
+                }
             }
             else if(nums[mid]<target){
                 left=mid+1;
@@ -26,24 +35,6 @@ class Solution {
                 right=mid-1;
             }
         }
-        return start;
-    }
-    public int findLastPost(int[] nums,int target){
-        int left=0;int right=nums.length-1;
-        int last=-1;
-        while(left<=right){
-            int mid=left+(right-left)/2;
-            if(nums[mid]==target){
-                last=mid;
-                left=mid+1;
-            }
-            else if(nums[mid]<target){
-                left=mid+1;
-            }
-            else{
-                right=mid-1;
-            }
-        }
-        return last;
+        return -1;
     }
 }
