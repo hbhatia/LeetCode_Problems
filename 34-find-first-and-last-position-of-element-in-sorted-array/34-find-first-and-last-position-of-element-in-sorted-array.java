@@ -1,5 +1,6 @@
 class Solution {
     //Using two binary Search for first and last index
+    //https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/discuss/14699/Clean-iterative-solution-with-two-binary-searches-(with-explanation)/275524
     public int[] searchRange(int[] nums, int target) {
         int[] retPos=new int[]{-1,-1};
         if(nums==null || nums.length==0){
