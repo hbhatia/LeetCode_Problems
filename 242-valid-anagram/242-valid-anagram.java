@@ -1,4 +1,5 @@
 class Solution {
+    //Using Aproach of Storing Chaaracters in Array of 26 size
     public boolean isAnagram(String s, String t) {
         int[] countChar=new int[26];
         int len1=s.length();
