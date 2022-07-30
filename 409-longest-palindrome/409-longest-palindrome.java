@@ -5,17 +5,14 @@ class Solution {
         for(char c:s.toCharArray()){
             countChar[c]++;
         }
-        boolean isOdd=false;
         int palLength=0;
         for(int i=0;i<128;i++){
-            if(countChar[i]%2==0){
-                palLength+=countChar[i];
-            }
-            else{
-                palLength+=(countChar[i]/2)*2;
-                isOdd=true;
+            int val=countChar[i];
+            palLength+=val/2*2;
+            if(palLength%2==0 && val%2==1){
+                palLength++;
             }
         }
-        return isOdd?++palLength:palLength;
+        return palLength;
     }
 }
