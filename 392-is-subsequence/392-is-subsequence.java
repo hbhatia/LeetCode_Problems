@@ -1,5 +1,5 @@
 class Solution {
-    //Uisng bruteforce Approach
+    //Using bruteforce Approach
     public boolean isSubsequence(String s, String t) {
         int len1=s.length();
         int len2=t.length();
