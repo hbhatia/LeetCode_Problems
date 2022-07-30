@@ -9,23 +9,27 @@
  * }
  */
 class Solution {
-    //Just folllowing simple recursive calls to get next smaller node.
+    //Using Iterative Way to do this
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-        if(null!=list1 && null!=list2){
+        ListNode list3=new ListNode(-1);
+        ListNode p=list3;
+        while(null!=list1 && null!=list2){
             if(list1.val<list2.val){
-                list1.next=mergeTwoLists(list1.next,list2);
-                return list1;
+                list3.next=list1;
+                list1=list1.next;
             }
             else{
-                list2.next=mergeTwoLists(list1,list2.next);
-                return list2;
+                list3.next=list2;
+                list2=list2.next;
             }
+            list3=list3.next;
         }
-        else if(null!=list1){
-            return list1;
+        if(null!=list1){
+            list3.next=list1;
         }
         else{
-            return list2;
+            list3.next=list2;
         }
+        return p.next;
     }
 }
