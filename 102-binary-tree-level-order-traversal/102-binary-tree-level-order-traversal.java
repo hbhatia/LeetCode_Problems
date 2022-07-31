@@ -14,27 +14,24 @@
  * }
  */
 class Solution {
-    //Using Iterative Approach
+    //Using approach of recursion calls
+    List<List<Integer>> retLst;
     public List<List<Integer>> levelOrder(TreeNode root) {
-        LinkedList<TreeNode> q=new LinkedList<TreeNode>();
-        List<List<Integer>> values=new ArrayList<List<Integer>>();
-        q.add(root);
-        if(null==root) return values;
-        while(!q.isEmpty()){
-            List<Integer> lst=new ArrayList<Integer>();
-            int nodeCount=q.size();
-            for(int i=0;i<nodeCount;i++){
-                TreeNode node=q.pollFirst();
-                lst.add(node.val);
-                if(null!=node.left){
-                    q.add(node.left);
-                }
-                if(null!=node.right){
-                    q.add(node.right);
-                }
-            }
-            values.add(lst);
+        retLst=new ArrayList<List<Integer>>();
+        if(null==root){
+            return retLst;
         }
-        return values;
+        traverseTreeRecur(root,0);
+        return retLst;
+    }
+    public void traverseTreeRecur(TreeNode root,int level){
+        if(level==retLst.size()){
+            retLst.add(new ArrayList<Integer>());
+        }
+        retLst.get(level).add(root.val);
+        //Call left side of tree
+        if(null!=root.left) traverseTreeRecur(root.left,level+1);
+        //Call right side of tree
+        if(null!=root.right) traverseTreeRecur(root.right,level+1);
     }
 }
