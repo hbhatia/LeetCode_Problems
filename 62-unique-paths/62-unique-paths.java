@@ -1,6 +1,7 @@
 class Solution {
     //Using Approach of DP 
     //NO TLE in this approach
+    //TC-O(N*M) is time complexity
     public int uniquePaths(int m, int n) {
         int[][] matrix=new int[m][n];
         // for(int[] arr:matrix){
