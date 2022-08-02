@@ -14,20 +14,35 @@
  * }
  */
 class Solution {
-    //Using Reecursion Traversal to sen =d high and low value for a node 
-    //and check that this value is valid
-    //For Left node call set high value as root.val
-    //For Right node call set low value as root.val
+    //Using Stack to traverse and check the tree 
+    //Here Slack will contain value of node ,its high and its low capacity value.So Three Stack will be used.
+    Stack<TreeNode> stk=new Stack<TreeNode>();
+    Stack<Integer> lowLimit=new Stack<Integer>();
+    Stack<Integer> highLimit=new Stack<Integer>();
+    
     public boolean isValidBST(TreeNode root) {
-        return validateBST(root,null,null);
-    }
-    public boolean validateBST(TreeNode root,Integer low,Integer high){
-        if(root==null){
-            return true;
+        //Inserting the Root Node with null as both values
+        stk.push(root);
+        lowLimit.push(null);
+        highLimit.push(null);
+        while(!stk.isEmpty()){
+            TreeNode node=stk.pop();
+            Integer low=lowLimit.pop();
+            Integer high=highLimit.pop();
+            if(node==null) continue;
+            int value=node.val;
+            if(null!=low && value<=low) return false;
+            if(null!=high && value>=high) return false; 
+            //Insert Right Node just for pop after Left node
+            stk.push(node.right);
+            lowLimit.push(value);
+            highLimit.push(high);
+            
+            //Now LeftNode
+            stk.push(node.left);
+            lowLimit.push(low);
+            highLimit.push(value);
         }
-        if((null!=high && root.val>=high)||(null!=low && root.val<=low)){
-            return false;
-        }
-        return validateBST(root.left,low,root.val) && validateBST(root.right,root.val,high);
+        return true;
     }
 }
