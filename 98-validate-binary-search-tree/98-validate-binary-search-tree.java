@@ -14,18 +14,20 @@
  * }
  */
 class Solution {
-    //Using Approach-1 given in solution
-    //Recursion Traversal with Valid Range
+    //Using Reecursion Traversal to sen =d high and low value for a node 
+    //and check that this value is valid
+    //For Left node call set high value as root.val
+    //For Right node call set low value as root.val
     public boolean isValidBST(TreeNode root) {
         return validateBST(root,null,null);
     }
     public boolean validateBST(TreeNode root,Integer low,Integer high){
-       if(null==root){
-           return true;
-       } 
-       if((null!=low && root.val<=low) || (null!=high && root.val>=high))
-           return false;
+        if(root==null){
+            return true;
+        }
+        if((null!=high && root.val>=high)||(null!=low && root.val<=low)){
+            return false;
+        }
         return validateBST(root.left,low,root.val) && validateBST(root.right,root.val,high);
     }
-    
 }
