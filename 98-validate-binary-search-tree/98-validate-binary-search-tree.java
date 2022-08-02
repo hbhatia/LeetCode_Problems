@@ -1,48 +1,36 @@
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
 class Solution {
-    //Using Stack to traverse and check the tree 
-    //Here Slack will contain value of node ,its high and its low capacity value.So Three Stack will be used.
-    Stack<TreeNode> stk=new Stack<TreeNode>();
-    Stack<Integer> lowLimit=new Stack<Integer>();
-    Stack<Integer> highLimit=new Stack<Integer>();
     
+    //Running to know the running time only
+
+    private Deque<TreeNode> stack = new LinkedList();
+    private Deque<Integer> upperLimits = new LinkedList();
+    private Deque<Integer> lowerLimits = new LinkedList();
+
+    public void update(TreeNode root, Integer low, Integer high) {
+        stack.add(root);
+        lowerLimits.add(low);
+        upperLimits.add(high);
+    }
+
     public boolean isValidBST(TreeNode root) {
-        //Inserting the Root Node with null as both values
-        stk.push(root);
-        lowLimit.push(null);
-        highLimit.push(null);
-        while(!stk.isEmpty()){
-            TreeNode node=stk.pop();
-            Integer low=lowLimit.pop();
-            Integer high=highLimit.pop();
-            if(node==null) continue;
-            int value=node.val;
-            if(null!=low && value<=low) return false;
-            if(null!=high && value>=high) return false; 
-            //Now LeftNode
-            stk.push(node.left);
-            lowLimit.push(low);
-            highLimit.push(value);
-            //Insert Right Node just for pop after Left node
-            stk.push(node.right);
-            lowLimit.push(value);
-            highLimit.push(high);
-            
-            
+        Integer low = null, high = null, val;
+        update(root, low, high);
+
+        while (!stack.isEmpty()) {
+            root = stack.poll();
+            low = lowerLimits.poll();
+            high = upperLimits.poll();
+
+            if (root == null) continue;
+            val = root.val;
+            if (low != null && val <= low) {
+                return false;
+            }
+            if (high != null && val >= high) {
+                return false;
+            }
+            update(root.right, val, high);
+            update(root.left, low, val);
         }
         return true;
     }
