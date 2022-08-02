@@ -33,15 +33,16 @@ class Solution {
             int value=node.val;
             if(null!=low && value<=low) return false;
             if(null!=high && value>=high) return false; 
+            //Now LeftNode
+            stk.push(node.left);
+            lowLimit.push(low);
+            highLimit.push(value);
             //Insert Right Node just for pop after Left node
             stk.push(node.right);
             lowLimit.push(value);
             highLimit.push(high);
             
-            //Now LeftNode
-            stk.push(node.left);
-            lowLimit.push(low);
-            highLimit.push(value);
+            
         }
         return true;
     }
