@@ -14,20 +14,22 @@
  * }
  */
 class Solution {
-    //Using the Solution apporach given in Solution
-    //Using Inorder recursive way
-    public Integer prev=null;
+    //Using the solution given using Inorder Traversal 
+    //Using Iterative Traversal Approach
     public boolean isValidBST(TreeNode root) {
-        if(null==root){
-            return true;
+        Stack<TreeNode> stk=new Stack<TreeNode>();
+        Integer prev=null;
+        while(!stk.isEmpty() || null!=root){
+            while(null!=root){
+                stk.push(root);
+                root=root.left;
+            }
+            root=stk.pop();
+            //Take out recent Last Added Node from Stack
+            if(null!=prev && root.val<=prev) return false;
+            prev=root.val;
+            root=root.right;
         }
-        if(!isValidBST(root.left)){
-            return false;
-        }
-        if(null!=prev && root.val<=prev){
-            return false;
-        }
-        prev=root.val;
-        return isValidBST(root.right);
+        return true;
     }
 }
