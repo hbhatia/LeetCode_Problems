@@ -1,4 +1,5 @@
 class Solution {
+    //Using O(N) time complexity and one pass--
     public int maxProfit(int[] prices) {
         int min=Integer.MAX_VALUE;
         int maxProfit=0;
