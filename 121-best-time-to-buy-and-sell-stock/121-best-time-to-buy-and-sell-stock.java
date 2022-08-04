@@ -1,14 +1,16 @@
 class Solution {
-    //Using O(N) time complexity and one pass--
+    //Using One pass -Better way
     public int maxProfit(int[] prices) {
-        int min=Integer.MAX_VALUE;
+        int minPrice=Integer.MAX_VALUE;
         int maxProfit=0;
-        for(int i=0;i<prices.length;i++){
-            if(prices[i]<min){
-                min=prices[i];
-                continue;
+        int len=prices.length;
+        for(int i=0;i<len;i++){
+            if(prices[i]<minPrice){
+                minPrice=prices[i];
             }
-            maxProfit=Math.max(maxProfit,prices[i]-min);
+            else if(prices[i]-minPrice>maxProfit){
+                maxProfit=prices[i]-minPrice;
+            }
         }
         return maxProfit;
     }
