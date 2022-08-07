@@ -1,29 +1,22 @@
 class Solution {
-    //Using Array of 9 Size to store count of Values from Secret String
+    //Using Array of size 10 i.e to keep values of 9 digits 
+    //Using Approach given in this link
+    //https://leetcode.com/problems/bulls-and-cows/discuss/74621/One-pass-Java-solution
     public String getHint(String secret, String guess) {
-        int[] count=new int[10];
-        for(char c:secret.toCharArray()){
-            count[c-'0']++;
-        }
-        int len=guess.length();
-        int m=0,nm=0;
-        for(int i=0;i<len;i++){
-            char c1=secret.charAt(i);
-            char c2=guess.charAt(i);
-            if(c1==c2){
-                m++;
-                count[c1-'0']--;
+        int count[]=new int[10];
+        int bulls=0;
+        int cows=0;
+        for(int i=0;i<guess.length();i++){
+            char s=secret.charAt(i);
+            char g=guess.charAt(i);
+            if(s==g) bulls++;
+            else{
+                if(count[s-'0']<0) cows++;
+                if(count[g-'0']>0) cows++;
+                count[s-'0']++;
+                count[g-'0']--;
             }
         }
-        for(int i=0;i<len;i++){
-            char c1=secret.charAt(i);
-            char c2=guess.charAt(i);
-            if(c1!=c2 && count[c2-'0']!=0){
-                count[c2-'0']--;
-                nm++;
-            }
-        }
-        
-        return new String(m+"A"+nm+"B");
+        return new String(bulls+"A"+cows+"B");
     }
 }
