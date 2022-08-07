@@ -1,30 +1,17 @@
 class Solution {
-    //Using Simple Traversing From backward.
+    //Using 1st Approach given in Solution
     public boolean backspaceCompare(String s, String t) {
-        String str1=findCorrectString(s);
-        String str2=findCorrectString(t);
-        return str1.equals(str2);
-        
+        return buildStr(s).equals(buildStr(t));
     }
-    public String findCorrectString(String s){
-        int len=s.length();
-        int count=0;
-        StringBuilder str=new StringBuilder();
-        for(int i=len-1;i>=0;i--){
-            char c=s.charAt(i);
-            if(c=='#'){
-                count++;
-                continue;
-            }
-            if(count>0){
-                //skip the character
-                count--;
-                continue;
-            }
-            else{
-                str.append(c);
+    public String buildStr(String st){
+        Stack<Character> stk=new Stack<Character>();
+        for(int i=0;i<st.length();i++){
+            char ch=st.charAt(i);
+            if(ch!='#') stk.push(ch);
+            else if(!stk.isEmpty()){
+                stk.pop();
             }
         }
-        return str.toString();
+        return String.valueOf(stk);
     }
 }
