@@ -12,10 +12,10 @@ class Solution {
             char g=guess.charAt(i);
             if(s==g) bulls++;
             else{
-                if(count[s-'0']++<0) cows++;
-                if(count[g-'0']-->0) cows++;
-                // count[s-'0']++;
-                // count[g-'0']--;
+                if(count[s-'0']<0) cows++;
+                if(count[g-'0']>0) cows++;
+                count[s-'0']++;
+                count[g-'0']--;
             }
         }
         return new String(bulls+"A"+cows+"B");
