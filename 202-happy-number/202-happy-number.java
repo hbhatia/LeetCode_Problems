@@ -1,13 +1,15 @@
 class Solution {
-    //Using First Approach given in Solution
-    //Here we are using HashSet to keeping number already explored and getting next number by simpley dviding and modulus operator
+    //Using Second Approach given in Solution
+    //We will use slow and fast number in this approach
     public boolean isHappy(int n) {
-        HashSet<Integer> set=new HashSet<Integer>();
-        while(!set.contains(n) && n!=1){
-            set.add(n);
-            n=getNextNum(n);
-        }
-        return n==1;
+       int slow=n,fast=n;
+      do{
+           slow=getNextNum(slow);
+           fast=getNextNum(fast);
+           fast=getNextNum(fast);
+       }
+         while(slow!=fast && slow!=1);
+        return slow==1;
     }
     public int getNextNum(int n){
         int num=0;
