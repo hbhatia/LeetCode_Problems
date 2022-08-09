@@ -8,6 +8,8 @@ class Solution {
         int n=matrix[0].length;
         int startR=0,endR=m-1,startC=0,endC=n-1;
         
+        //This condition can also be used
+        //while(startR<=endR && startC<=endC{
         while(res.size()<m*n){
             //Traverse Right
             for(int i=startC;i<=endC;i++){
