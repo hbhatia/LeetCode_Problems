@@ -8,8 +8,8 @@ class Solution {
            fast=getNextNum(fast);
            fast=getNextNum(fast);
        }
-         while(slow!=fast && slow!=1);
-        return slow==1;
+         while(slow!=fast && fast!=1);
+        return fast==1;
     }
     public int getNextNum(int n){
         int num=0;
