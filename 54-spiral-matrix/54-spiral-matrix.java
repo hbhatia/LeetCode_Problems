@@ -24,15 +24,13 @@ class Solution {
             endC--;
 
             //Traverse Left
-            if(startR<=endR)
-            for(int i=endC;i>=startC;i--){
+            for(int i=endC;i>=startC && res.size()<m*n;i--){
                 res.add(matrix[endR][i]);
             }
             endR--;
 
             //TraverseUp
-            if(startC<=endC)
-            for(int i=endR;i>=startR;i--){
+            for(int i=endR;i>=startR && res.size()<m*n;i--){
                 res.add(matrix[i][startC]);
             }
             startC++;
