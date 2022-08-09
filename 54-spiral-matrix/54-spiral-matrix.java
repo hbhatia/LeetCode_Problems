@@ -1,4 +1,6 @@
 class Solution {
+    //Using Another slight modification to last submission 
+    //Here we have removed the if conditions check while moving left and up direction 
     public List<Integer> spiralOrder(int[][] matrix) {
         List<Integer> res=new ArrayList<Integer>();
         if(matrix.length==0){
