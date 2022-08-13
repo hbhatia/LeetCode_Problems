@@ -1,5 +1,7 @@
 class Solution {
     //Using Approach 1 provided by Solution
+    //TC- O(S)
+    //It will be equals to sum of length of all strings
     public String longestCommonPrefix(String[] strs) {
         if(strs.length==0) return "";
         String prefix=strs[0];
