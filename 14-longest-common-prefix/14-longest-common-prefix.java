@@ -1,16 +1,16 @@
 class Solution {
-    //Using Approach 1 provided by Solution
-    //TC- O(S)
-    //It will be equals to sum of length of all strings
+    //Using 2nd Solution given in Solution 
+    //Idea is to use vertical sanning
     public String longestCommonPrefix(String[] strs) {
-        if(strs.length==0) return "";
-        String prefix=strs[0];
-        for(int i=1;i<strs.length;i++){
-            while(strs[i].indexOf(prefix)!=0){
-                prefix=prefix.substring(0,prefix.length()-1);
-                if(prefix=="") return prefix;
+        if(strs==null || strs.length==0) return "";
+        for(int i=0;i<strs[0].length();i++){
+            char c=strs[0].charAt(i);
+            for(int j=1;j<strs.length;j++){
+                if(i==strs[j].length() || c!=strs[j].charAt(i)){
+                    return strs[0].substring(0,i);
+                }
             }
         }
-        return prefix;
+        return strs[0];
     }
 }
