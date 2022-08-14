@@ -12,6 +12,7 @@ class Solution {
     //Using the Approach 1 given in solution
     //First count the total length of list
     //Then reach at len-n from starting and delete len-n+1 node
+    //Using Two pass
     public ListNode removeNthFromEnd(ListNode head, int n) {
         int len=0;
         ListNode start=head;
