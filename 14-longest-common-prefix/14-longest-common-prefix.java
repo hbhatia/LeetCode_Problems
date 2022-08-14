@@ -1,16 +1,26 @@
 class Solution {
-    //Using 2nd Solution given in Solution 
-    //Idea is to use vertical sanning
+    //Using Solution 3 Provided by Leetcode
+    //Using Divide and Conquer approach
     public String longestCommonPrefix(String[] strs) {
-        if(strs==null || strs.length==0) return "";
-        for(int i=0;i<strs[0].length();i++){
-            char c=strs[0].charAt(i);
-            for(int j=1;j<strs.length;j++){
-                if(i==strs[j].length() || c!=strs[j].charAt(i)){
-                    return strs[0].substring(0,i);
-                }
+        if(null==strs || strs.length==0) return "";
+        return findCommonPrefix(strs,0,strs.length-1);
+    }
+    public String findCommonPrefix(String strs[],int left ,int right){
+        if(left==right){
+            return strs[left];
+        }
+        int mid=(left+right)/2;
+        String leftCommon=findCommonPrefix(strs,left,mid);
+        String rightCommon=findCommonPrefix(strs,mid+1,right);
+        return findMatchedPrefix(leftCommon,rightCommon);
+    }
+    public String findMatchedPrefix(String left,String right){
+        int minLen=Math.min(left.length(),right.length());
+        for(int i=0;i<minLen;i++){
+            if(left.charAt(i)!=right.charAt(i)){
+                return left.substring(0,i);
             }
         }
-        return strs[0];
+        return left.substring(0,minLen);
     }
 }
