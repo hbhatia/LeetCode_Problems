@@ -14,21 +14,20 @@ class Solution {
     //Then reach at len-n from starting and delete len-n+1 node
     public ListNode removeNthFromEnd(ListNode head, int n) {
         int len=0;
-        ListNode node=head;
-        while(null!=node){
+        ListNode start=head;
+        while(null!=start){
+            start=start.next;
             len++;
-            node=node.next;
         }
-        if(n>len) return head;
-        int pos=0;
-        ListNode dummy=new ListNode(-1);
-        ListNode first=dummy;
+        len-=n;
+        ListNode dummy=new ListNode(0);
         dummy.next=head;
-        while(pos<len-n){
-            dummy=dummy.next;
-            pos++;
+        ListNode p=dummy;
+        while(len>0){
+            p=p.next;
+            len--;
         }
-        dummy.next=dummy.next.next;
-        return first.next;
+        p.next=p.next.next;
+        return dummy.next;
     }
 }
