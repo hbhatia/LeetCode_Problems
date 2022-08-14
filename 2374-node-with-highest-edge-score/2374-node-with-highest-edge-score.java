@@ -1,4 +1,5 @@
 class Solution {
+    //Uisng brute force approach
     public int edgeScore(int[] edges) {
         long []count=new long[100002];
         for(int i=0;i<edges.length;i++){
