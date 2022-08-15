@@ -9,26 +9,25 @@
  * }
  */
 class Solution {
-    //Using the Approach 1 given in solution
-    //First count the total length of list
-    //Then reach at len-n from starting and delete len-n+1 node
-    //Using Two pass
+    //Using the Approach 2 given in solution
+    //We will use two pointers one is first and another is second
+    //Before Traversal start First will jump to n+1 steps
+    //After that we will increment first and second one by one
+    //Using One pass
     public ListNode removeNthFromEnd(ListNode head, int n) {
-        int len=0;
-        ListNode start=head;
-        while(null!=start){
-            start=start.next;
-            len++;
-        }
-        len-=n;
-        ListNode dummy=new ListNode(0);
+        ListNode dummy=new ListNode(-1);
         dummy.next=head;
-        ListNode p=dummy;
-        while(len>0){
-            p=p.next;
-            len--;
+        ListNode first=dummy;
+        ListNode second=dummy;
+        int i=1;
+        while(i++<=n+1){
+            first=first.next;
         }
-        p.next=p.next.next;
+        while(null!=first){
+            first=first.next;
+            second=second.next;
+        }
+        second.next=second.next.next;
         return dummy.next;
     }
 }
