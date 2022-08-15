@@ -9,20 +9,45 @@
  * }
  */
 class Solution {
-    //Using the 2nd Solution given in
-    //We will use here Recursion approach
-    ListNode first;
+    //Using 3rd solution given by leetcode
+    //Here we will first reverse the secodn half part of linkedlist
+    //then we will compare each element of first half and second half of list one by one
+    //We will then restore the reversed 2nd Half list to main list
     public boolean isPalindrome(ListNode head) {
-        first=head;
-        return recursiveTraverse(head);
-    }
-    
-    public boolean recursiveTraverse(ListNode head){
-        if(null!=head){
-            if(!recursiveTraverse(head.next)) return false;
-            if(first.val!=head.val) return false;
-            first=first.next;
+        if(null==head) return true;
+        ListNode firstHalfPtr=endOfFirstHalf(head);
+        ListNode secondHalfPtr=reverseList(firstHalfPtr.next);
+       // System.out.println(firstHalfPtr.val);
+        ListNode p1=head;
+        ListNode p2=secondHalfPtr;
+        boolean result=true;
+        while(result && null!=p2){
+            if(p1.val!=p2.val) result=false;
+            p1=p1.next;
+            p2=p2.next;
         }
-        return true;
+        firstHalfPtr.next=reverseList(secondHalfPtr);
+        return result;
+    }
+    public ListNode endOfFirstHalf(ListNode start){
+        ListNode slow=start;
+        ListNode fast=start;
+        while(null!=fast.next && null!=fast.next.next){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        return slow;
+    }
+    //reverse the list
+    public ListNode reverseList(ListNode node){
+        ListNode prev=null;
+        ListNode curr=node;
+        while(null!=curr){
+            ListNode temp=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=temp;
+        }
+        return prev;
     }
 }
