@@ -10,6 +10,9 @@
  */
 class Solution {
     //Using solution 1 given by Leetcode
+    //This is little bit tweak 
+    //This is here - 
+    //https://leetcode.com/problems/odd-even-linked-list/discuss/78079/Simple-O(N)-time-O(1)-space-Java-solution.
     public ListNode oddEvenList(ListNode head) {
         if(null==head) return head;
         ListNode odd=head;
