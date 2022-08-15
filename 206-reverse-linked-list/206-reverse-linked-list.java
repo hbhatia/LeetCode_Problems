@@ -9,16 +9,14 @@
  * }
  */
 class Solution {
-    //Using Iterative Approach
+    //Using recursive Approach
     public ListNode reverseList(ListNode head) {
-        ListNode prev=null;
-        ListNode curr=head;
-        while(curr!=null){
-            ListNode next=curr.next;
-            curr.next=prev;
-            prev=curr;
-            curr=next;
+        if(null==head || null==head.next){
+            return head;
         }
-        return prev;
+        ListNode lastNode=reverseList(head.next);
+        head.next.next=head;
+        head.next=null;
+        return lastNode;
     }
 }
