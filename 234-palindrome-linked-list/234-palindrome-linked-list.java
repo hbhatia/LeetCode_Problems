@@ -9,22 +9,19 @@
  * }
  */
 class Solution {
-    //Using Approach 1 
-    //We can copy the nodes value in the arraylist,string array.
-    //But we can use only arraylist and string as we can add items in it idenfinitely without confirming the size beforehand
-    //Then directly compare values of it using two pointer approach
+    //Using the 2nd Solution given in
+    //We will use here Recursion approach
+    ListNode first;
     public boolean isPalindrome(ListNode head) {
-        ArrayList<Integer> lst=new ArrayList<Integer>();
-        ListNode node=head;
-        while(null!=node){
-            lst.add(node.val);
-            node=node.next;
-        }
-        int len=lst.size();
-        for(int i=0;i<=len/2;i++){
-            if(lst.get(i)!=lst.get(len-i-1)){
-                return false;
-            }
+        first=head;
+        return recursiveTraverse(head);
+    }
+    
+    public boolean recursiveTraverse(ListNode head){
+        if(null!=head){
+            if(!recursiveTraverse(head.next)) return false;
+            if(first.val!=head.val) return false;
+            first=first.next;
         }
         return true;
     }
