@@ -16,6 +16,7 @@
 class Solution {
     //Using BruteForce Approach to traverse tree recursively 
     //Swap Left and right node of each root one by one
+    //This is coded in the form of Top-Down Approach and calling left and right node recursively.
     public TreeNode invertTree(TreeNode root) {
         if(null!=root){
             TreeNode left=root.left;
