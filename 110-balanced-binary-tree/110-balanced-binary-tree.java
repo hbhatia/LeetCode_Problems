@@ -26,7 +26,7 @@ class Solution {
         return (Math.abs(leftH-rightH)<=1);
     }
     public int getHeight(TreeNode root){
-        if(null==root){
+        if(null==root || !isValid){
             return -1;
         }
         else{
