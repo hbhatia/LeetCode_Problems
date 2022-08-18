@@ -14,6 +14,7 @@
  * }
  */
 class Solution {
+    //Using BruteForce Approach using recursion
     public boolean isValid;
     public boolean isBalanced(TreeNode root) {
         if(null==root){
