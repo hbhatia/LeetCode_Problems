@@ -14,31 +14,23 @@
  * }
  */
 class Solution {
-    //Using BruteForce Approach using recursion
-    public boolean isValid;
+    //Using Approach 1 in Solution
     public boolean isBalanced(TreeNode root) {
         if(null==root){
             return true;
         }
-        isValid=true;
-        int leftH=getHeight(root.left);
-        int rightH=getHeight(root.right);
-        if(!isValid) return false;
-        return (Math.abs(leftH-rightH)<=1);
+        if(Math.abs(getHeight(root.left)-getHeight(root.right))>1){
+            return false;
+        }
+        if(!isBalanced(root.left) || !isBalanced(root.right)){
+            return false;
+        }
+        return true;
     }
     public int getHeight(TreeNode root){
-        if(null==root || !isValid){
+        if(null==root){
             return -1;
         }
-        else{
-            int leftH=getHeight(root.left);
-            int rightH=getHeight(root.right);
-            if(Math.abs(leftH-rightH)>1) {
-                this.isValid=false;
-                return Integer.MAX_VALUE;
-            }
-            int h=1+Math.max(leftH,rightH);
-            return h;
-        }
+        return 1+Math.max(getHeight(root.left),getHeight(root.right));
     }
 }
