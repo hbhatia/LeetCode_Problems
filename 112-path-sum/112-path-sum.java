@@ -16,6 +16,7 @@
 class Solution {
     
     //Using BruteForce Apporach of recursion calls
+    //Doing with the help of global variable to update value whenever results is found or else as default is False.
     boolean hasFound=false;
     public boolean hasPathSum(TreeNode root, int targetSum) {
         if(null==root){
