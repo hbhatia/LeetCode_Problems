@@ -14,23 +14,15 @@
  * }
  */
 class Solution {
-    
-    //Using BruteForce Apporach of recursion calls
-    //Doing with the help of global variable to update value whenever results is found or else as default is False.
-    boolean hasFound=false;
+    //Doing With recursion by Approach 1 in solution
     public boolean hasPathSum(TreeNode root, int targetSum) {
         if(null==root){
-            return hasFound;
+            return false;
         }
-        else if(null==root.left && null==root.right){
-            if(targetSum==root.val){
-                hasFound=true; 
-            }
+        targetSum-=root.val;
+        if(null==root.left && null== root.right) {
+            if(targetSum==0) return true;
         }
-        else{
-            hasPathSum(root.left,targetSum-root.val);
-            hasPathSum(root.right,targetSum-root.val);
-        }
-        return hasFound;
+        return hasPathSum(root.left,targetSum) || hasPathSum(root.right,targetSum);
     }
 }
