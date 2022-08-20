@@ -29,13 +29,13 @@ class Solution {
             if(null==node.left && null==node.right && val==0){
                 return true;
             }
-            if(null!=node.left){
-                stkN.push(node.left);
-                stkV.push(val-node.left.val);
-            }
             if(null!=node.right){
                 stkN.push(node.right);
                 stkV.push(val-node.right.val);
+            }
+            if(null!=node.left){
+                stkN.push(node.left);
+                stkV.push(val-node.left.val);
             }
         }
         return false;
