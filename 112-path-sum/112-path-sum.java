@@ -14,15 +14,31 @@
  * }
  */
 class Solution {
-    //Doing With recursion by Approach 1 in solution
+    //Doing With BFS Approach like in approach 2
     public boolean hasPathSum(TreeNode root, int targetSum) {
         if(null==root){
             return false;
         }
-        targetSum-=root.val;
-        if(null==root.left && null== root.right) {
-            if(targetSum==0) return true;
+        LinkedList<TreeNode> stkN=new LinkedList<TreeNode>();
+        LinkedList<Integer> stkV=new LinkedList<Integer>();
+        stkN.push(root);
+        stkV.push(targetSum-root.val);
+        while(!stkN.isEmpty()){
+            TreeNode node=stkN.pop();
+            Integer val=stkV.pop();
+            if(null==node.left && null==node.right && val==0){
+                return true;
+            }
+            if(null!=node.left){
+                stkN.push(node.left);
+                stkV.push(val-node.left.val);
+            }
+            if(null!=node.right){
+                stkN.push(node.right);
+                stkV.push(val-node.right.val);
+            }
         }
-        return hasPathSum(root.left,targetSum) || hasPathSum(root.right,targetSum);
+        return false;
+        
     }
 }
