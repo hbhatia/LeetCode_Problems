@@ -1,6 +1,7 @@
 class Solution {
     public int leastInterval(char[] tasks, int n) {
         //Total Task can be 26 as task are in Letters only.
+        //Done using Approach 1 Greedy in Solution.
         int freq[]=new int[26];
         for(int i=0;i<tasks.length;i++){
             freq[tasks[i]-'A']++;
