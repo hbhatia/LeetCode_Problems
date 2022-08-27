@@ -1,17 +1,26 @@
 class Solution {
-    //Using the bruteForce Approach
+    //Using the solution by lc
+    //Here we will use concept of bs
     public boolean searchMatrix(int[][] matrix, int target) {
-        int rowL=matrix.length;
-        int colL=matrix[0].length;
-        int i,j;
-        for(i=0;i<rowL;i++){
-            if(target>=matrix[i][0] && target <=matrix[i][colL-1]){
-                break;
-            }
+        if(null==matrix){
+            return false;
         }
-        for(j=0;i!=rowL && j<colL;j++){
-            if(matrix[i][j]==target){
+        int m=matrix.length;
+        int n=matrix[0].length;
+        //Appying here BS on whole matixes indices
+        int low=0;
+        int high=m*n-1;
+        while(low<=high){
+            int mid=(low+high)/2;
+            int midEle=matrix[mid/n][mid%n];
+            if(midEle==target){
                 return true;
+            }
+            else if(midEle<target){
+                low=mid+1;
+            }
+            else{
+                high=mid-1;
             }
         }
         return false;
