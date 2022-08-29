@@ -7,9 +7,17 @@ class Solution {
            slow=getNextNum(slow);
            fast=getNextNum(fast);
            fast=getNextNum(fast);
-       }
-         while(slow!=fast && fast!=1);
+       }while(slow!=fast && fast!=1);
         return fast==1;
+       /*
+       This will also work in same way because 1^1 is always 1.
+       do{
+           slow=getNextNum(slow);
+           fast=getNextNum(fast);
+           fast=getNextNum(fast);
+       }while(slow!=fast && slow!=1);
+        return slow==1;
+       */
     }
     public int getNextNum(int n){
         int num=0;
