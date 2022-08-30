@@ -1,15 +1,14 @@
 class Solution {
     //Using First Approach Given in Solution
+    //Modify for better code
     public boolean isHappy(int n) {
         HashSet<Integer> set=new HashSet<Integer>();
-        while(!set.contains(n)){
+        while(!set.contains(n) && n!=1){
             set.add(n);
             n=getNextNum(n);
-            if(n==1){
-                return true;
-            }
+            
         }
-        return false;
+        return n==1;
     }
     public int getNextNum(int num){
         int res=0;
