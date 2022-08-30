@@ -1,4 +1,5 @@
 class Solution {
+    //Using First Approach Given in Solution
     public boolean isHappy(int n) {
         HashSet<Integer> set=new HashSet<Integer>();
         while(!set.contains(n)){
