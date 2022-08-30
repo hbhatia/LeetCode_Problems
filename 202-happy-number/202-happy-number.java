@@ -1,14 +1,15 @@
 class Solution {
-    //Using First Approach Given in Solution
-    //Modify for better code
+    //Using Second Approach Given in Solution
+    //Here we are using Floyed Cycle _finding ALgo
+    //Concept of Slow and Fast Pointers.
     public boolean isHappy(int n) {
-        HashSet<Integer> set=new HashSet<Integer>();
-        while(!set.contains(n) && n!=1){
-            set.add(n);
-            n=getNextNum(n);
-            
+        int slow=n;
+        int fast=getNextNum(n);
+        while(fast!=1 && slow!=fast){
+            slow=getNextNum(slow);
+            fast=getNextNum(getNextNum(fast));
         }
-        return n==1;
+        return fast==1;
     }
     public int getNextNum(int num){
         int res=0;
