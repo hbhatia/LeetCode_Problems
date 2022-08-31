@@ -1,15 +1,11 @@
 class Solution {
-    //Using Second Approach Given in Solution
-    //Here we are using Floyed Cycle _finding ALgo
-    //Concept of Slow and Fast Pointers.
+    //Using 3rd Approach Given in Solution
     public boolean isHappy(int n) {
-        int slow=n;
-        int fast=getNextNum(n);
-        while(fast!=1 && slow!=fast){
-            slow=getNextNum(slow);
-            fast=getNextNum(getNextNum(fast));
+        int res=0;
+        while(n!=1 && n!=4){
+            n=getNextNum(n);
         }
-        return fast==1;
+        return n==1;
     }
     public int getNextNum(int num){
         int res=0;
