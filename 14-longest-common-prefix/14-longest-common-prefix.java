@@ -17,7 +17,6 @@ class Solution {
     }
     
     public String findCommonString(String left,String right){
-        StringBuilder commonStr=new StringBuilder();
         int len=Math.min(left.length(),right.length());
         for(int i=0;i<len;i++){
             if(left.charAt(i)!=right.charAt(i)){
