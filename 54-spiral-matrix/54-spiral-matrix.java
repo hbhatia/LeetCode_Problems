@@ -1,42 +1,37 @@
 class Solution {
-    //Using Another slight modification to last submission 
-    //Here we have removed the if conditions check while moving left and up direction 
-    //https://leetcode.com/problems/spiral-matrix/discuss/20599/Super-Simple-and-Easy-to-Understand-Solution
     public List<Integer> spiralOrder(int[][] matrix) {
-        List<Integer> res=new ArrayList<Integer>();
-        if(matrix.length==0){
-            return res;
-        }
         int m=matrix.length;
         int n=matrix[0].length;
-        int startR=0,endR=m-1,startC=0,endC=n-1;
-        
-        //This condition can also be used
-        //while(startR<=endR && startC<=endC{
-        while(res.size()<m*n){
-            //Traverse Right
-            for(int i=startC;i<=endC;i++){
-                res.add(matrix[startR][i]);
+        int size=m*n;
+        int sRow=0;
+        int eRow=m-1;
+        int sCol=0;
+        int eCol=n-1;
+        List<Integer> res=new ArrayList<Integer>();
+        while(res.size()<size){
+            //Traverse left to right
+            for(int i=sCol;i<=eCol && res.size()<size;i++){
+                res.add(matrix[sRow][i]);
             }
-            startR++;
-
-            //TraverseDown
-            for(int i=startR;i<=endR;i++){
-                res.add(matrix[i][endC]);
+            sRow++;
+            
+            //Traverse top to bottom
+            for(int i=sRow;i<=eRow && res.size()<size;i++){
+                res.add(matrix[i][eCol]);
             }
-            endC--;
-
-            //Traverse Left
-            for(int i=endC;i>=startC && res.size()<m*n;i--){
-                res.add(matrix[endR][i]);
+            eCol--;
+            
+            //Traverse from right to left
+            for(int i=eCol;i>=sCol && res.size()<size;i--){
+                res.add(matrix[eRow][i]);
             }
-            endR--;
-
-            //TraverseUp
-            for(int i=endR;i>=startR && res.size()<m*n;i--){
-                res.add(matrix[i][startC]);
+            eRow--;
+            
+            //Traverse from bottom to up
+            for(int i=eRow;i>=sRow && res.size()<size;i--){
+                res.add(matrix[i][sCol]);
             }
-            startC++;
+            sCol++;
         }
         return res;
     }
