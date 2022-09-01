@@ -20,13 +20,10 @@ class Solution {
         StringBuilder commonStr=new StringBuilder();
         int len=Math.min(left.length(),right.length());
         for(int i=0;i<len;i++){
-            if(left.charAt(i)==right.charAt(i)){
-                commonStr.append(left.charAt(i));
-            }
-            else{
-                break;
+            if(left.charAt(i)!=right.charAt(i)){
+                return left.substring(0,i);
             }
         }
-        return commonStr.toString();
+        return left.substring(0,len);
     }
 }
