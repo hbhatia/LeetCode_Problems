@@ -9,25 +9,23 @@
  * }
  */
 class Solution {
-    //Using the Approach 2 given in solution
-    //We will use two pointers one is first and another is second
-    //Before Traversal start First will jump to n+1 steps
-    //After that we will increment first and second one by one
-    //Using One pass
     public ListNode removeNthFromEnd(ListNode head, int n) {
-        ListNode dummy=new ListNode(-1);
-        dummy.next=head;
-        ListNode first=dummy;
-        ListNode second=dummy;
-        int i=1;
-        while(i++<=n+1){
+        ListNode first=new ListNode(-1);
+        ListNode second= new ListNode(-1);
+        ListNode op=second;
+        first.next=head;
+        second.next=head;
+        int step=n;
+        //Taking first pointer to 
+        while(step>0){
             first=first.next;
+            step--;
         }
-        while(null!=first){
+        while(null!=first && null!=first.next){
             first=first.next;
             second=second.next;
         }
         second.next=second.next.next;
-        return dummy.next;
+        return op.next;
     }
 }
