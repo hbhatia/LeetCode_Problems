@@ -13,6 +13,7 @@ class Solution {
     //Here we will first count the length
     //Beacuse from starting We need to remove L-N+1 element
     //So while traverisng (IN 2nd Iteration) we will traverse till N-L element.
+    //Also called this approach as Two-Pass Algorithm.
     public ListNode removeNthFromEnd(ListNode head, int n) {
         int countNodes=0;
         ListNode root=head;
