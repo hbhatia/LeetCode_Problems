@@ -9,23 +9,25 @@
  * }
  */
 class Solution {
+    //Doing by first Approach given in solution
+    //Here we will first count the length
+    //Beacuse from starting We need to remove L-N+1 element
+    //So while traverisng (IN 2nd Iteration) we will traverse till N-L element.
     public ListNode removeNthFromEnd(ListNode head, int n) {
-        ListNode first=new ListNode(-1);
-        ListNode second= new ListNode(-1);
-        ListNode op=second;
-        first.next=head;
-        second.next=head;
-        int step=n;
-        //Taking first pointer to 
-        while(step>0){
-            first=first.next;
-            step--;
+        int countNodes=0;
+        ListNode root=head;
+        while(null!=root){
+            countNodes++;
+            root=root.next;
         }
-        while(null!=first && null!=first.next){
-            first=first.next;
-            second=second.next;
+        ListNode dummy=new ListNode(-1,head);
+        ListNode curr=dummy;
+        int reachStart=0;
+        while(reachStart<countNodes-n){
+            dummy=dummy.next;
+            reachStart++;
         }
-        second.next=second.next.next;
-        return op.next;
+        dummy.next=dummy.next.next;
+        return curr.next;
     }
 }
