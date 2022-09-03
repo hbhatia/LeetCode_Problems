@@ -9,26 +9,27 @@
  * }
  */
 class Solution {
-    //Doing by first Approach given in solution
-    //Here we will first count the length
-    //Beacuse from starting We need to remove L-N+1 element
-    //So while traverisng (IN 2nd Iteration) we will traverse till N-L element.
-    //Also called this approach as Two-Pass Algorithm.
+    //Using Second Approach given in Solution
+    //Here we will use Two -Pass Approach
+    //First we will just reach at n+1 with first pointer to maintin a gap of n places 
+    // After that we will increment the first and second pointer untill first goes null.
     public ListNode removeNthFromEnd(ListNode head, int n) {
-        int countNodes=0;
-        ListNode root=head;
-        while(null!=root){
-            countNodes++;
-            root=root.next;
-        }
         ListNode dummy=new ListNode(-1,head);
-        ListNode curr=dummy;
-        int reachStart=0;
-        while(reachStart<countNodes-n){
-            dummy=dummy.next;
-            reachStart++;
+        ListNode first=dummy;
+        ListNode second=dummy;
+        //First pointer will be traversed first to reach at nth Node from starting
+        //and Initially First is at -1(before head) 
+        //This way gap between first and second will be atleast n from starting
+        for(int i=0;i<=n;i++){
+            first=first.next;
         }
-        dummy.next=dummy.next.next;
-        return curr.next;
+        
+        //Now start traverse and increment both pointer till first reached the end
+        while(null!=first){
+            first=first.next;
+            second=second.next;
+        }
+        second.next=second.next.next;
+        return dummy.next;
     }
 }
