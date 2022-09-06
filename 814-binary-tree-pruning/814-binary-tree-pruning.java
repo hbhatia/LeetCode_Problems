@@ -14,30 +14,18 @@
  * }
  */
 class Solution {
-    //Using DFS Solution to traverse the tree
+    //Using Given Solution in Solution section
     public TreeNode pruneTree(TreeNode root) {
-        if(null==root){
-            return root;
-        }
-        int rootval=callDFS(root);
-        
-        return rootval==0?null:root;
+        return isContainsOne(root)?root:null;
     }
-    public int callDFS(TreeNode root){
+    public boolean isContainsOne(TreeNode root){
         if(null==root){
-            return 0;
+            return false;
         }
-        else if(null==root.left && null==root.right){
-            return root.val;
-        }
-        else{
-            int left=callDFS(root.left);
-            int right=callDFS(root.right);
-            if(left==0){
-                root.left=null;
-            }
-            if(right==0) root.right=null;
-            return Math.max(root.val,Math.max(left,right));
-        }
+        boolean left=isContainsOne(root.left);
+        boolean right=isContainsOne(root.right);
+        if(left==false) root.left=null;
+        if(right==false) root.right=null;
+        return root.val==1||left||right;
     }
 }
