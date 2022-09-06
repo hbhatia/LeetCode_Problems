@@ -9,45 +9,21 @@
  * }
  */
 class Solution {
-    //Using 3rd solution given by leetcode
-    //Here we will first reverse the secodn half part of linkedlist
-    //then we will compare each element of first half and second half of list one by one
-    //We will then restore the reversed 2nd Half list to main list
+    //Using the brute force Approach 
+    //We will store the results in to ArrayLoist and then check the Array List as Pallindrom or not by simply reversing it from start and end direction.
     public boolean isPalindrome(ListNode head) {
-        if(null==head) return true;
-        ListNode firstHalfPtr=endOfFirstHalf(head);
-        ListNode secondHalfPtr=reverseList(firstHalfPtr.next);
-       // System.out.println(firstHalfPtr.val);
-        ListNode p1=head;
-        ListNode p2=secondHalfPtr;
-        boolean result=true;
-        while(result && null!=p2){
-            if(p1.val!=p2.val) result=false;
-            p1=p1.next;
-            p2=p2.next;
+        List<Integer> lst=new ArrayList<Integer>();
+        ListNode curr=head;
+        while(curr!=null){
+            lst.add(curr.val);
+            curr=curr.next;
         }
-        firstHalfPtr.next=reverseList(secondHalfPtr);
-        return result;
-    }
-    public ListNode endOfFirstHalf(ListNode start){
-        ListNode slow=start;
-        ListNode fast=start;
-        while(null!=fast.next && null!=fast.next.next){
-            slow=slow.next;
-            fast=fast.next.next;
+        int size=lst.size();
+        for(int i=0;i<=size/2;i++){
+            if(lst.get(i)!=lst.get(size-i-1)){
+                return false;
+            }
         }
-        return slow;
-    }
-    //reverse the list
-    public ListNode reverseList(ListNode node){
-        ListNode prev=null;
-        ListNode curr=node;
-        while(null!=curr){
-            ListNode temp=curr.next;
-            curr.next=prev;
-            prev=curr;
-            curr=temp;
-        }
-        return prev;
+        return true;
     }
 }
