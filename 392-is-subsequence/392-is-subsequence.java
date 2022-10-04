@@ -1,24 +1,17 @@
 class Solution {
-    //Using DP with Greedy Appproach and with recursive Calls
-    String str1;
-    String str2;
-    int len1;
-    int len2;
+    //Uisng the BruteForce Approach
     public boolean isSubsequence(String s, String t) {
-        this.str1=s;
-        this.str2=t;
-        this.len1=s.length();
-        this.len2=t.length();
-        return findIsSubseq(0,0);
-    }
-    public boolean findIsSubseq(int leftIndex,int rightIndex){
-        if(leftIndex==len1) return true;
-        if(rightIndex==len2) return false;
-        //Computing correct Left and Right Index for next calls
-        if(str1.charAt(leftIndex)==str2.charAt(rightIndex)) {
-            leftIndex++;
+        int sLen=s.length();
+        int tLen=t.length();
+        if(sLen==0) return true;
+        int sInd=0;
+        for(int i=0;i<tLen && sInd<sLen;i++){
+            char sChar=s.charAt(sInd);
+            char tChar=t.charAt(i);
+            if(sChar==tChar){
+                sInd++;
+            }
         }
-        rightIndex++;
-        return findIsSubseq(leftIndex,rightIndex);
+        return sInd==sLen;
     }
 }
