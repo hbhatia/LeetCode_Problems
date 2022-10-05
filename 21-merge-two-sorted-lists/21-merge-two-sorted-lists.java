@@ -9,22 +9,25 @@
  * }
  */
 class Solution {
-    //Using simple Iterative Approach
+    //Using Recursive Approach
+    //We will call recursively this method by passing both list pointers
+    //So Recursive Call SmallElement(list1,list2)+Either[mergeTwoLists(list1.next,list2),mergeTwoList(list1,list2.next)]
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-        ListNode l3=new ListNode(-1,null);
-        ListNode ptr=l3;
-        while(null!=list1 && null!=list2){
+        if(null==list1){
+            return list2;
+        }
+        if(null==list2){
+            return list1;
+        }
+        else{
             if(list1.val<=list2.val){
-                l3.next=list1;
-                list1=list1.next;
+                list1.next=mergeTwoLists(list1.next,list2);
+                return list1;
             }
             else{
-                l3.next=list2;
-                list2=list2.next;
+                list2.next=mergeTwoLists(list1,list2.next);
+                return list2;
             }
-            l3=l3.next;
         }
-        l3.next=(list1==null?list2:list1);
-        return ptr.next;
     }
 }
