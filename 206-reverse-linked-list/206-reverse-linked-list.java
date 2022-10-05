@@ -9,17 +9,23 @@
  * }
  */
 class Solution {
-    //Using the iteration Approach
+    //Using the Recursive Approach
+    ListNode lstNode=null;
     public ListNode reverseList(ListNode head) {
-        ListNode prev=null;
-        ListNode curr=head;
-        //In this loop we will traverse the list and reverse by manipulating the Pointers
-        while(curr!=null){
-            ListNode next=curr.next;
-            curr.next=prev;
-            prev=curr;
-            curr=next;
+        lstNode=null;
+        callTraverseList(head);
+        return lstNode;
+    }
+    public ListNode callTraverseList(ListNode head){
+        if(null==head || null==head.next){
+            lstNode=head;
+            return head;
+            
         }
-        return prev;
+        ListNode nextNode=callTraverseList(head.next);
+        nextNode.next=head;
+        head.next=null;
+        return head;
+            
     }
 }
