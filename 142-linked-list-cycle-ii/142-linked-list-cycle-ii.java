@@ -14,14 +14,9 @@ public class Solution {
     //TC- O(N)
     //SC- O(N)
     public ListNode detectCycle(ListNode head) {
-        HashMap<ListNode,Integer> map=new HashMap<ListNode,Integer>();
-        int pos=0;
+        Set<ListNode> map=new HashSet<ListNode>();
         while(null!=head){
-            if(!map.containsKey(head)){
-                map.put(head,pos);
-                pos++;
-            }
-            else{
+            if(!map.add(head)){
                 return head;
             }
             head=head.next;
