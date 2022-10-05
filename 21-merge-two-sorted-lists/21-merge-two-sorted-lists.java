@@ -9,6 +9,7 @@
  * }
  */
 class Solution {
+    //Using simple Iterative Approach
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
         ListNode l3=new ListNode(-1,null);
         ListNode ptr=l3;
@@ -24,12 +25,7 @@ class Solution {
                 l3=l3.next;
             }
         }
-        if(null!=list1){
-            l3.next=list1;
-        }
-        if(null!=list2){
-            l3.next=list2;
-        }
+        l3.next=(list1==null?list2:list1);
         return ptr.next;
     }
 }
