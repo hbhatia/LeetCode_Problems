@@ -1,15 +1,14 @@
 class Solution {
-    //Using Two array of 256 size
+    //Using One array of 512 size to keep both data in same array
     public boolean isIsomorphic(String s, String t) {
-        int[] sArr=new int[256];
-        int[] tArr=new int[256];
+        int[] arr=new int[512];
         //Here s.length() t.length() will always be equal so dont need to handle.
         for(int i=0;i<s.length();i++){
-            if(sArr[s.charAt(i)]!=tArr[t.charAt(i)]){
+            if(arr[s.charAt(i)]!=arr[t.charAt(i)+256]){
                 return false;
             }
-            sArr[s.charAt(i)]=i+1;
-            tArr[t.charAt(i)]=i+1;
+            arr[s.charAt(i)]=i+1;
+            arr[t.charAt(i)+256]=i+1;
         }
         return true;
     }
