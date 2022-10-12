@@ -1,5 +1,6 @@
 class Solution {
-    //Using the Approach of Min-Max or Peak_Valley Approach 
+    //Using the Approach of Min-Max or Peak_Valley Approach
+    //Self Driven
     public int maxProfit(int[] prices) {
         int min=prices[0];
         int max=prices[0];
