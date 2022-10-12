@@ -1,23 +1,22 @@
 class Solution {
-    //Using the Approach of Min-Max or Peak_Valley Approach
-    //Self Driven
+    //Using the 2nd Approach given in Solution
     public int maxProfit(int[] prices) {
-        int min=prices[0];
-        int max=prices[0];
+        int i=0;
+        int valley=prices[0];
+        int peak=prices[0];
         int ts=0;
-        int cs=0;
-        for(int i=1;i<prices.length;i++){
-            if(prices[i]>=max){
-                cs=prices[i]-min;
-                max=prices[i];
+        int len=prices.length;
+        while(i<len-1){
+            while(i<len-1 && prices[i]>=prices[i+1]){
+                i++;
             }
-            else{
-                ts+=cs;
-                min=prices[i];
-                max=prices[i];
-                cs=0;
+            valley=prices[i];
+            while(i<len-1 && prices[i]<=prices[i+1]){
+                i++;
             }
+            peak=prices[i];
+            ts+=peak-valley;
         }
-        return cs==0?ts:ts+cs;
+        return ts;
     }
 }
