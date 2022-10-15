@@ -18,21 +18,19 @@ class Node {
 */
 
 class Solution {
-    //Iterative Solution using Discussion and Solution
+    //Using Recursive Solution 
+    //Link -https://leetcode.com/problems/n-ary-tree-preorder-traversal/discuss/147955/Java-Iterative-and-Recursive-Solutions
+    List<Integer> output=new ArrayList<Integer>();
     public List<Integer> preorder(Node root) {
-        List<Integer> output=new ArrayList<Integer>();
         if(null==root){
             return output;
         }
-        LinkedList<Node> stk=new LinkedList<Node>();
-        stk.push(root);
-        while(!stk.isEmpty()){
-            Node node=stk.poll();
-            output.add(node.val);
-            for(int i=node.children.size()-1;i>=0;i--){
-                stk.push(node.children.get(i));
+        else{
+            output.add(root.val);
+            for(int i=0;i<root.children.size();i++){
+                preorder(root.children.get(i));
             }
+            return output;
         }
-        return output;
     }
 }
