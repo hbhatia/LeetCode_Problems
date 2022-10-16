@@ -10,6 +10,8 @@
 
 class Solution {
     //Using Iterative Approach given in Solution
+    //Here SC is O(1) as no Recursive memory is needed here.
+    //Here TC is O(N) due to left or right skewed tree.
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         int pVal=p.val;
         int qVal=q.val;
