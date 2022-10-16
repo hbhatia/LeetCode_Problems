@@ -14,35 +14,22 @@
  * }
  */
 class Solution {
-    //Using Recursive Solution Approach in Solution
-    //Here we use LinkedList also.
-    LinkedList<TreeNode> stk=new LinkedList<TreeNode>();
-    LinkedList<Integer> higherL=new LinkedList<Integer>();
-    LinkedList<Integer> lowerL=new LinkedList<Integer>();
+    //Using Approch 3 in Solution
+    //InOrder traversal in DF style Using Recursion
+    Integer prev=null;
     public boolean isValidBST(TreeNode root) {
+        if(null==root) return true;
+        return inorder(root);
+    }
+    public boolean inorder(TreeNode root){
         if(null==root){
             return true;
         }
-        stk.add(root);
-        higherL.add(null);
-        lowerL.add(null);
-        while(!stk.isEmpty()){
-            TreeNode node=stk.poll();
-            Integer high=higherL.poll();
-            Integer low=lowerL.poll();
-            if(null==node) continue;
-            if(null!=low && node.val<=low) return false;
-            if(null!=high && node.val>=high) return false;
-            //Insert Right Node
-            update(node.right,node.val,high);
-            //Insert Left Node
-            update(node.left,low,node.val);
+        if(!inorder(root.left)){
+            return false;
         }
-        return true;
-    }
-    public void update(TreeNode node,Integer low,Integer high){
-        stk.add(node);
-        lowerL.add(low);
-        higherL.add(high);
+        if(null!=prev && root.val<=prev) return false;
+        prev=root.val;
+        return inorder(root.right);
     }
 }
