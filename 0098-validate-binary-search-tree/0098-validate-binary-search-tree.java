@@ -14,18 +14,35 @@
  * }
  */
 class Solution {
-    //Using Recursive Approach in Solution
+    //Using Recursive Solution Approach in Solution
+    //Here we use LinkedList also.
+    LinkedList<TreeNode> stk=new LinkedList<TreeNode>();
+    LinkedList<Integer> higherL=new LinkedList<Integer>();
+    LinkedList<Integer> lowerL=new LinkedList<Integer>();
     public boolean isValidBST(TreeNode root) {
-        //call recursive Method to check the node
-        return isValidateBST(root,null,null);
-    }
-    public boolean isValidateBST(TreeNode root,Integer low,Integer high){
         if(null==root){
             return true;
         }
-        if((null!=low && root.val<=low) || (null!=high && root.val>=high)){
-            return false;
+        stk.add(root);
+        higherL.add(null);
+        lowerL.add(null);
+        while(!stk.isEmpty()){
+            TreeNode node=stk.poll();
+            Integer high=higherL.poll();
+            Integer low=lowerL.poll();
+            if(null==node) continue;
+            if(null!=low && node.val<=low) return false;
+            if(null!=high && node.val>=high) return false;
+            //Insert Right Node
+            update(node.right,node.val,high);
+            //Insert Left Node
+            update(node.left,low,node.val);
         }
-        return isValidateBST(root.left,low,root.val) && isValidateBST(root.right,root.val,high);
+        return true;
+    }
+    public void update(TreeNode node,Integer low,Integer high){
+        stk.add(node);
+        lowerL.add(low);
+        higherL.add(high);
     }
 }
