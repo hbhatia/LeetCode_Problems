@@ -11,6 +11,8 @@
 class Solution {
     //Using Approach 1 in the Solution
     //Recursive calls
+    //here TC will be O(N) as tree might be right or left skewed and we may have to traverse it in complete nodes
+    //Here SC is O(N) by same logic 
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         int parentVal=root.val;
         int pVal=p.val;
