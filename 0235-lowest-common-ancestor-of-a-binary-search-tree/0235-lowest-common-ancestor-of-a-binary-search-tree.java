@@ -9,22 +9,24 @@
  */
 
 class Solution {
-    //Using Approach 1 in the Solution
-    //Recursive calls
-    //here TC will be O(N) as tree might be right or left skewed and we may have to traverse it in complete nodes
-    //Here SC is O(N) by same logic 
+    //Using Iterative Approach given in Solution
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        int parentVal=root.val;
         int pVal=p.val;
         int qVal=q.val;
+        TreeNode node=root;
+        while(null!=node){
+            int parentVal=node.val;
+            if(pVal>parentVal && qVal>parentVal){
+                node=node.right;
+            }
+            else if(pVal<parentVal && qVal<parentVal){
+                node=node.left;
+            }
+            else{
+                return node;
+            }
+        }
+        return null;
         
-        //Finding if Nodes exist in right sub tree
-        if(pVal>parentVal && qVal>parentVal){
-            return lowestCommonAncestor(root.right,p,q);
-        }
-        if(pVal<parentVal && qVal<parentVal){
-            return lowestCommonAncestor(root.left,p,q);
-        }
-        return root;
     }
 }
