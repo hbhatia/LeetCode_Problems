@@ -27,7 +27,7 @@ class Solution {
         if(left+right+mid>=2){
             this.lca=root;
         }
-        return (left+right+mid)>=1?true:false;
+        return (left+right+mid)>=1;
     
     }
 }
