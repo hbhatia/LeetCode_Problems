@@ -1,5 +1,6 @@
 class Solution {
     //Using Brute Force Approach
+    //This has TC- O(N) and SC is O(N)
     public int trap(int[] height) {
         int len=height.length;
         int leftMax[]=new int[len];
