@@ -1,42 +1,40 @@
 class Solution {
-    //Using the solution given in Approach
+    //Using First Approach given in Solution
+    //We will use stack to store every character in String s
     public String decodeString(String s) {
         Stack<Character> stk=new Stack<Character>();
-        for(int i=0;i<s.length();i++){
-            char c=s.charAt(i);
-            if(c==']'){
-                List<Character> lst=new ArrayList<Character>();
-                //Adding string to list
-                while(stk.peek()!='['){
-                    lst.add(stk.pop());
+        for(Character ch:s.toCharArray()){
+            if(ch==']'){
+                StringBuilder str=new StringBuilder();
+                while(!stk.isEmpty() && stk.peek()!='['){
+                    Character c=stk.pop();
+                    str.append(c);
                 }
-                
+                //Popping [ from the stack.
                 stk.pop();
-                //Now will look out the number 
+                //Now its time to find the digit ,digit may be more than 1 
+                int base=1;
                 int num=0;
-                int b=1;
                 while(!stk.isEmpty() && Character.isDigit(stk.peek())){
-                    num=num+(stk.pop()-'0')*b;
-                    b*=10;
+                    num=num+(stk.pop()-'0')*base;
+                    base*=10;
                 }
-                //Constitue the string num times;
-                while(num>0){
-                    for(int j=lst.size()-1;j>=0;j--){
-                        stk.push(lst.get(j));
+                //Now push this string str to stack num times.
+                while(num!=0){
+                    for(int i=str.length()-1;i>=0;i--){
+                        stk.push(str.charAt(i));
                     }
                     num--;
                 }
             }
             else{
-                stk.push(c);
+                stk.push(ch);
             }
         }
-        //System.out.println(stk +" "+ stk.size());
-        char[] res=new char[stk.size()];
-        for(int j=res.length-1;j>=0;j--){
-            res[j]=stk.pop();
+        StringBuilder output=new StringBuilder();
+        while(!stk.isEmpty()){
+            output.append(stk.pop());
         }
-        return new String(res);
-        //return String.valueOf(stk);
+        return output.reverse().toString();
     }
 }
