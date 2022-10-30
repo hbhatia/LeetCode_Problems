@@ -1,28 +1,28 @@
 class Solution {
-    //Using First Approach given in Solution
-    //We will use stack to store every character in String s
+    //Using first Approach given in Solution
     public String decodeString(String s) {
         Stack<Character> stk=new Stack<Character>();
-        for(Character ch:s.toCharArray()){
+        for(int i=0;i<s.length();i++){
+            Character ch=s.charAt(i);
             if(ch==']'){
+                //Need to pop the values from Stack
                 StringBuilder str=new StringBuilder();
                 while(!stk.isEmpty() && stk.peek()!='['){
-                    Character c=stk.pop();
-                    str.append(c);
+                    str.append(stk.pop());
                 }
-                //Popping [ from the stack.
+                //Delete the [ from stack
                 stk.pop();
-                //Now its time to find the digit ,digit may be more than 1 
-                int base=1;
+                //Findinh the number to whihc we will multiple the occurance
                 int num=0;
+                int base=1;
                 while(!stk.isEmpty() && Character.isDigit(stk.peek())){
                     num=num+(stk.pop()-'0')*base;
-                    base*=10;
+                    base=base*10;
                 }
-                //Now push this string str to stack num times.
-                while(num!=0){
-                    for(int i=str.length()-1;i>=0;i--){
-                        stk.push(str.charAt(i));
+                //We will reverse push the string num times in the stack again
+                while(num>0){
+                    for(int k=str.length()-1;k>=0;k--){
+                        stk.push(str.charAt(k));
                     }
                     num--;
                 }
