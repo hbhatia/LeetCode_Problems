@@ -1,6 +1,7 @@
 class Solution {
     //Using 2nd Approach in the Solution
     //Here we will use 2 Stack to keep Count and String in Seprate Stack.
+    //TC is O(MaxK*N) and SC is O(M+N) ,M=no of digits and N is numnber of character like a,b,c etc.
     public String decodeString(String s) {
         Stack<Integer> cStack=new Stack<Integer>();
         Stack<StringBuilder> sStack=new Stack<StringBuilder>();
