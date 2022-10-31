@@ -3,9 +3,9 @@ class Solution {
     //TC -O(N) and SC- O(N)
     public int evalRPN(String[] tokens) {
         Stack<Integer> stk=new Stack<Integer>();
-        List<String> op=new ArrayList<String>(Arrays.asList("+","-","*","/"));
+        // List<String> op=new ArrayList<String>(Arrays.asList("+","-","*","/"));
         for(String tk:tokens){
-            if(op.contains(tk)){
+            if("+,-,*,/".contains(tk)){
                 Integer val1=stk.pop();
                 Integer val2=stk.pop();
                 switch(tk){
